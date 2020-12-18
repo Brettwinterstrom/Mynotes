@@ -2,7 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const express = require("express")
 
-const PORT = 8080;
+var PORT = process.env || 3000;
 const app = express();
 
 app.get("/notes", function (req, res) {
