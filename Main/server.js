@@ -2,7 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const express = require("express")
 
-var PORT = process.env || 3000;
+var PORT = process.env.PORT || 3000;
 const app = express();
 
 app.get("/notes", function (req, res) {
