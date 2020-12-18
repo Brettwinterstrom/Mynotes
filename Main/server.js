@@ -1,14 +1,40 @@
 const http = require("http");
 const fs = require("fs");
+const express = require("express")
 
 const PORT = 8080;
+const app = express();
 
-function handleRequest(request, response) {
-    response.end("It works! Path Hit: " + request.url);
-}
+app.get("/notes", function (req, res) {
+    res.sendFile(path.join(__dirname, "/public/notes.html"));
+});
 
-const server = http.createServer(handleRequest);
+app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "/public/index.html"));
+});
 
-server.listen(PORT, function () {
-    console.log("Server listening on: http://localhost" + PORT);
-})
+// const server = http.createServer(handleRequest);
+
+// function handleRequest(req, res) {
+//     var path = req.url;
+
+//     switch (path) {
+//         case "/notes":
+//             return fs.readFile(__dirname + "/public/notes.html", function (err, data) {
+//                 if (err) throw err;
+//                 res.writeHead(200, { "Content-Type": "text/html" });
+//                 res.end(data);
+//             });
+//         default:
+//             return fs.readFile(__dirname + "/public/index.html", function (err, data) {
+//                 if (err) throw err;
+//                 res.writeHead(200, { "Content-Type": "text/html" });
+//                 res.end(data);
+//             });
+//     }
+// }
+
+
+app.listen(PORT, function () {
+    console.log("Server listening on Port: " + PORT);
+});
